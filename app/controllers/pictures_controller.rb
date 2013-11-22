@@ -15,7 +15,7 @@ class PicturesController < ApplicationController
     @picture = Picture.new
     @picture.image_url = params[:image_url]
     @picture.caption = params[:caption]
-    @picture.user_id = params[:user_id]
+    @picture.user_id = current_user.id
 
     if @picture.save
       redirect_to pictures_url, notice: "Picture created successfully."
@@ -32,7 +32,7 @@ class PicturesController < ApplicationController
     @picture = Picture.find_by(id: params[:id])
     @picture.image_url = params[:image_url]
     @picture.caption = params[:caption]
-    @picture.user_id = params[:user_id]
+    @picture.user_id = current_user.id
 
     if @picture.save
       redirect_to pictures_url, notice: "Picture updated successfully."
