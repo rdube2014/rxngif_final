@@ -1,4 +1,5 @@
 RxngifFinal::Application.routes.draw do
+  devise_for :users
   root 'pictures#index'
 
   # Routes for the User resource:
