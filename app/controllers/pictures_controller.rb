@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
 
   def index
-    @pictures = Picture.all
+    @pictures = Picture.page(params[:page]).per(10)
   end
 
   def show
