@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
   before_action :set_user, :only => [:show, :edit, :update, :destroy]
+  before_action :authorize_user, :only => [:edit, :update, :destroy]
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def authorize_user
+    unless @user == current_user
+      redirect_to root_url, :alert => "You are not authorized for that."
+    end
   end
 
   def index
