@@ -7,7 +7,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Image url</th>
+      <th>Image</th>
       <th>Caption</th>
       <th>User</th>
       <th></th>
@@ -19,9 +19,9 @@
   <tbody>
     <% @pictures.each do |picture| %>
       <tr>
-        <td><%= picture.image_url %></td>
+        <td><%= image_tag picture.image_url, :width => 200 %></td>
         <td><%= picture.caption %></td>
-        <td><%= picture.user_id %></td>
+        <td><%= picture.user.full_name %></td>
         <td><%= link_to '<i class="fa fa-search-plus"></i>'.html_safe, picture_url(picture), class: 'btn btn-primary' %></td>
         <td><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_picture_url(picture), class: 'btn btn-warning' %></td>
         <td><%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, picture_url(picture), method: 'delete', data: { confirm: "Do you really want to delete this picture?" }, class: 'btn btn-danger' %></td>

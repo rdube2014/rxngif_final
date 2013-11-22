@@ -3,13 +3,13 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt>Image url</dt>
-  <dd><%= @picture.image_url %></dd>
+  <dt>Image</dt>
+  <dd><%= image_tag @picture.image_url, :width => 400 %></dd>
 
   <dt>Caption</dt>
   <dd><%= @picture.caption %></dd>
 
   <dt>User</dt>
-  <dd><%= @picture.user_id %></dd>
+  <dd><%= @picture.user.full_name %></dd>
 
 </dl>
