@@ -1,11 +1,15 @@
 class PicturesController < ApplicationController
+  before_action :set_picture, :only => [:show, :edit, :update, :destroy]
+
+  def set_picture
+    @picture = User.find(params[:id])
+  end
 
   def index
     @pictures = Picture.page(params[:page]).per(10)
   end
 
   def show
-    @picture = Picture.find_by(id: params[:id])
   end
 
   def new
@@ -25,11 +29,9 @@ class PicturesController < ApplicationController
   end
 
   def edit
-    @picture = Picture.find_by(id: params[:id])
   end
 
   def update
-    @picture = Picture.find_by(id: params[:id])
     @picture.image_url = params[:image_url]
     @picture.caption = params[:caption]
     @picture.user_id = current_user.id
@@ -42,7 +44,6 @@ class PicturesController < ApplicationController
   end
 
   def destroy
-    @picture = Picture.find_by(id: params[:id])
     @picture.destroy
 
     redirect_to pictures_url, notice: "Picture deleted."

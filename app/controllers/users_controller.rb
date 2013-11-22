@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
+  before_action :set_user, :only => [:show, :edit, :update, :destroy]
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find_by(id: params[:id])
   end
 
   def new
@@ -24,11 +28,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: params[:id])
   end
 
   def update
-    @user = User.find_by(id: params[:id])
     @user.first_name = params[:first_name]
     @user.last_name = params[:last_name]
 
@@ -40,7 +42,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by(id: params[:id])
     @user.destroy
 
     redirect_to users_url, notice: "User deleted."
